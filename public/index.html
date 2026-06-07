@@ -14,10 +14,10 @@
   <div class="app-bar">
     <div class="brand">
       <img id="logoSlot" class="brand-logo-img" src="/logo.svg" alt="SAMAN" style="height:64px;width:auto;max-width:240px;cursor:pointer" onclick="goHome()" />
-      <button class="btn competidor" id="competidorBtn" title="Escanear marcas de la competencia">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <span id="competidorBtnLabel">Escanear competencia</span>
-      </button>
+      <div class="group-toggle">
+        <button class="btn group-btn" id="btnGrupoSaman" data-group="saman" title="Ver marcas propias: Saman, La Abundancia y Kyoto">Saman</button>
+        <button class="btn group-btn" id="btnGrupoCompetencia" data-group="competencia" title="Ver marcas de la competencia: Blue Patna, Arroz Green Chef, Arroz Aruba, Sakura y Mirokumai">Competencia</button>
+      </div>
     </div>
 
     <div class="header-actions">

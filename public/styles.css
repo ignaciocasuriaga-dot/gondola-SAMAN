@@ -776,13 +776,26 @@ td a:hover { color: var(--rojo); text-decoration: underline; }
 }
 
 /* ===== Modo competencia ===== */
-.btn.competidor {
+.group-toggle {
+  display: flex;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.btn.group-btn {
+  background: #fff;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 0;
+  padding: 8px 18px;
+  font-weight: 700;
+}
+.btn.group-btn:hover:not(:disabled) { background: #f1f1f1; }
+.btn.group-btn.active {
   background: #1a1a1a;
   color: #fff;
-  border-color: #1a1a1a;
 }
-.btn.competidor:hover:not(:disabled) { background: #000; border-color: #000; }
-.btn.competidor.active { background: #fff; color: #1a1a1a; border-color: #1a1a1a; }
+.btn.group-btn + .btn.group-btn { border-left: 1.5px solid #1a1a1a; }
 .competencia-banner {
   background: #1a1a1a;
   color: #fff;

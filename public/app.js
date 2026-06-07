@@ -42,6 +42,17 @@ function applyGroupFilter() {
   state.compare.brand = '';
 }
 
+function setGroupMode(competitorMode) {
+  if (state.competitorMode === competitorMode) return;
+  state.competitorMode = competitorMode;
+  applyGroupFilter();
+  switchTab('catalog');
+  renderAll();
+  toast(competitorMode
+    ? 'Modo competencia: Blue Patna · Arroz Green Chef · Arroz Aruba · Sakura · Mirokumai'
+    : 'Volviste a las marcas Saman, La Abundancia y Kyoto');
+}
+
 // ===== Util =====
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -447,10 +458,8 @@ function renderAll() {
 }
 
 function renderHeader() {
-  $('#competidorBtn')?.classList.toggle('active', state.competitorMode);
-  if ($('#competidorBtnLabel')) {
-    $('#competidorBtnLabel').textContent = state.competitorMode ? '◀ Volver a Saman' : 'Escanear competencia';
-  }
+  $('#btnGrupoSaman')?.classList.toggle('active', !state.competitorMode);
+  $('#btnGrupoCompetencia')?.classList.toggle('active', state.competitorMode);
   if ($('#competenciaBanner')) $('#competenciaBanner').style.display = state.competitorMode ? '' : 'none';
   if (!state.generatedAt) return;
   const d = new Date(state.generatedAt);
@@ -1352,15 +1361,8 @@ async function refresh() {
 function initEvents() {
   $$('.tab').forEach((t) => t.addEventListener('click', () => switchTab(t.dataset.tab)));
   $('#refreshBtn').addEventListener('click', refresh);
-  $('#competidorBtn').addEventListener('click', () => {
-    state.competitorMode = !state.competitorMode;
-    applyGroupFilter();
-    switchTab('catalog');
-    renderAll();
-    toast(state.competitorMode
-      ? 'Modo competencia: Blue Patna · Arroz Green Chef · Arroz Aruba · Sakura · Mirokumai'
-      : 'Volviste a las marcas Saman, La Abundancia y Kyoto');
-  });
+  $('#btnGrupoSaman').addEventListener('click', () => setGroupMode(false));
+  $('#btnGrupoCompetencia').addEventListener('click', () => setGroupMode(true));
   $('#catalogQ').addEventListener('input', (e) => { state.catalog.q = e.target.value; renderCatalog(); });
   $$('#tableCatalog th[data-sort]').forEach((th) => th.addEventListener('click', () => {
     const key = th.dataset.sort;
