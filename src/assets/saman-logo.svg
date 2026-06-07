@@ -1,6 +1,0 @@
-<svg width="240" height="140" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAMAN">
-  <ellipse cx="120" cy="70" rx="118" ry="64" fill="#ffffff"/>
-  <ellipse cx="124" cy="70" rx="108" ry="56" fill="#E30613"/>
-  <path d="M 30 38 A 100 56 0 0 1 210 50" stroke="#ffffff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
-  <text x="124" y="90" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-style="italic" font-size="46" fill="#ffffff" letter-spacing="2">SAMAN</text>
-</svg>
