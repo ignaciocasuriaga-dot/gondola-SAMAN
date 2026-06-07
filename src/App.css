@@ -1,0 +1,202 @@
+.app { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* HEADER */
+.header {
+  background: var(--saman-red);
+  color: var(--saman-white);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 24px;
+  flex-wrap: wrap;
+}
+
+.logo-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.logo-btn img { height: 56px; display: block; }
+
+.nav-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.nav-tabs button {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: var(--saman-white);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.nav-tabs button:hover { background: rgba(255,255,255,0.25); }
+.nav-tabs button.active {
+  background: var(--saman-white);
+  color: var(--saman-red);
+}
+
+.competidor-btn {
+  background: var(--texto);
+  color: var(--saman-white);
+  border: 2px solid var(--saman-white);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.competidor-btn:hover { background: #1a1a1a; }
+.competidor-btn.active { background: var(--saman-white); color: var(--texto); }
+
+/* TOOLBAR */
+.toolbar {
+  background: var(--saman-white);
+  border-bottom: 1px solid var(--gris-borde);
+  padding: 14px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.campo select, .campo input[type="file"] {
+  padding: 7px 10px;
+  border: 1px solid var(--gris-borde);
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 180px;
+  background: white;
+}
+
+.btn-actualizar {
+  background: var(--saman-red);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 18px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.btn-actualizar:hover { background: var(--saman-red-dark); }
+.btn-actualizar:disabled { opacity: 0.6; cursor: wait; }
+
+.ultima-actualizacion {
+  font-size: 12px;
+  color: #777;
+}
+
+.spacer { flex: 1; }
+
+/* MAIN */
+.main { flex: 1; padding: 22px 24px; max-width: 1280px; margin: 0 auto; width: 100%; }
+
+h2.section-title {
+  color: var(--saman-red);
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+/* PRODUCT GRID */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid var(--gris-borde);
+  border-radius: 10px;
+  padding: 14px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-card .marca {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--saman-red);
+  letter-spacing: 0.5px;
+}
+
+.product-card .nombre { font-weight: 600; font-size: 14px; line-height: 1.3; }
+.product-card .super { font-size: 12px; color: #777; }
+.product-card .pvp { font-size: 20px; font-weight: 800; color: var(--texto); }
+.product-card .pvp .label { font-size: 11px; font-weight: 600; color: #888; margin-right: 4px; }
+
+.badge-oferta {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--saman-red);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 12px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #888;
+  padding: 60px 20px;
+  font-size: 15px;
+}
+
+/* TABLES (comparativas) */
+.tabla-wrap { overflow-x: auto; background: white; border: 1px solid var(--gris-borde); border-radius: 10px; }
+table.comparativa { border-collapse: collapse; width: 100%; font-size: 14px; }
+table.comparativa th, table.comparativa td { padding: 10px 14px; border-bottom: 1px solid var(--gris-borde); text-align: left; }
+table.comparativa th { background: var(--saman-red); color: white; position: sticky; top: 0; }
+table.comparativa tr:hover td { background: #fff5f5; }
+.celda-oferta { color: var(--saman-red); font-weight: 700; }
+.celda-min { font-weight: 800; color: #1a7f37; }
+
+.tarjetas-resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px; }
+.tarjeta-resumen {
+  background: white; border: 1px solid var(--gris-borde); border-radius: 10px;
+  padding: 16px; text-align: center;
+}
+.tarjeta-resumen .num { font-size: 30px; font-weight: 800; color: var(--saman-red); }
+.tarjeta-resumen .desc { font-size: 13px; color: #666; margin-top: 4px; }
+
+.barra-cobertura { background: var(--gris-borde); border-radius: 6px; height: 12px; overflow: hidden; width: 160px; }
+.barra-cobertura > div { height: 100%; background: var(--saman-red); }
+
+.competencia-banner {
+  background: #1a1a1a;
+  color: white;
+  padding: 10px 24px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.competencia-banner strong { color: #ffce00; }
+
+footer.app-footer {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  padding: 16px;
+}
