@@ -9,14 +9,16 @@ const ALL_BRANDS = [...OWN_BRANDS, ...COMPETITOR_BRANDS];
 const PRICE_LIST_KEY = 'gondola-saman-pvp-v1';
 const GAP_LABEL = { above: 'Sobre PVP', ok: 'En linea', below: 'Bajo PVP' };
 
-function activeGroup() { return state.competitorMode ? 'competencia' : 'saman'; }
+// El catalogo permite seleccionar Saman y/o Competencia via chips de filtro
+// (state.catalog.groups). Las pestañas de informe/posicionamiento se enfocan
+// siempre en el portfolio propio (Saman, La Abundancia, Kyoto).
+function activeGroup() { return 'saman'; }
 function activeGroupLabel() { return GROUP_LABEL[activeGroup()]; }
-function portfolioBrands() { return state.competitorMode ? COMPETITOR_BRANDS : OWN_BRANDS; }
+function portfolioBrands() { return OWN_BRANDS; }
 
 const state = {
   allItems: [],        // todos los items relevados (marcas propias + competencia)
-  items: [],           // items del grupo activo (Saman o Competencia)
-  competitorMode: false,
+  items: [],           // todos los items disponibles para catalogo/comparador (filtrables por grupo)
   groups: { saman: OWN_BRANDS, competencia: COMPETITOR_BRANDS },
   suggested: null,
   priceList: [],       // lista cargada manualmente por el usuario (flat, merged)
@@ -33,24 +35,9 @@ const state = {
   clusters: [],
 };
 
-function applyGroupFilter() {
-  state.items = state.allItems.filter((i) => i.group === activeGroup());
+function loadAllItems() {
+  state.items = state.allItems;
   state.clusters = clusterProducts(state.items);
-  // Limpiar selecciones de filtros que pueden referirse a marcas del otro grupo
-  state.catalog.brands.clear();
-  state.catalog.groups.clear();
-  state.compare.brand = '';
-}
-
-function setGroupMode(competitorMode) {
-  if (state.competitorMode === competitorMode) return;
-  state.competitorMode = competitorMode;
-  applyGroupFilter();
-  switchTab('catalog');
-  renderAll();
-  toast(competitorMode
-    ? 'Modo competencia: Blue Patna · Arroz Green Chef · Arroz Aruba · Sakura · Mirokumai'
-    : 'Volviste a las marcas Saman, La Abundancia y Kyoto');
 }
 
 // ===== Util =====
@@ -427,7 +414,7 @@ async function load() {
     state.groups = { saman: OWN_BRANDS, competencia: COMPETITOR_BRANDS };
     state.suggested = data.suggested || null;
     state.generatedAt = data.generatedAt;
-    applyGroupFilter();
+    loadAllItems();
     renderAll();
   } catch (e) {
     console.error(e);
@@ -458,9 +445,6 @@ function renderAll() {
 }
 
 function renderHeader() {
-  $('#btnGrupoSaman')?.classList.toggle('active', !state.competitorMode);
-  $('#btnGrupoCompetencia')?.classList.toggle('active', state.competitorMode);
-  if ($('#competenciaBanner')) $('#competenciaBanner').style.display = state.competitorMode ? '' : 'none';
   if (!state.generatedAt) return;
   const d = new Date(state.generatedAt);
   $('#lastUpdate').innerHTML = `<b>Última actualización</b><br>${d.toLocaleString('es-UY', { dateStyle: 'medium', timeStyle: 'short' })}`;
@@ -1361,8 +1345,6 @@ async function refresh() {
 function initEvents() {
   $$('.tab').forEach((t) => t.addEventListener('click', () => switchTab(t.dataset.tab)));
   $('#refreshBtn').addEventListener('click', refresh);
-  $('#btnGrupoSaman').addEventListener('click', () => setGroupMode(false));
-  $('#btnGrupoCompetencia').addEventListener('click', () => setGroupMode(true));
   $('#catalogQ').addEventListener('input', (e) => { state.catalog.q = e.target.value; renderCatalog(); });
   $$('#tableCatalog th[data-sort]').forEach((th) => th.addEventListener('click', () => {
     const key = th.dataset.sort;
@@ -1379,10 +1361,12 @@ function initEvents() {
 }
 
 function goHome() {
-  state.competitorMode = false;
-  applyGroupFilter();
   state.catalog.q = '';
+  state.catalog.brands.clear();
+  state.catalog.supers.clear();
+  state.catalog.groups.clear();
   state.compare.q = '';
+  state.compare.brand = '';
   state.offers.q = '';
   switchTab('catalog');
   renderAll();
