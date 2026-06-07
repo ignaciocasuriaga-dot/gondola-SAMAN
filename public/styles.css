@@ -580,6 +580,8 @@ td a:hover { color: var(--rojo); text-decoration: underline; }
 .modal-close:hover { background: var(--rojo); color: #fff; }
 
 .product-link { cursor: pointer; }
+.store-link { font-size: 11px; color: var(--rojo); text-decoration: none; font-weight: 600; }
+.store-link:hover { text-decoration: underline; }
 
 /* ===== Toast ===== */
 .toast {

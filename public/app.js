@@ -578,7 +578,10 @@ function renderCatalog() {
       const discountPct = isOffer ? Math.round((1 - i.price / i.listPrice) * 100) : 0;
       const key = `${i.super}:${i.sku}`;
       return `<tr>
-        <td><a href="#" class="product-link" data-key="${escape(key)}">${escape(i.name)}</a></td>
+        <td>
+          <a href="#" class="product-link" data-key="${escape(key)}">${escape(i.name)}</a>
+          ${i.url ? `<br><a href="${escape(i.url)}" target="_blank" rel="noopener" class="store-link" title="Ir a la publicacion del super donde se leyo este precio">Ver en el super ↗</a>` : ''}
+        </td>
         <td class="brand">${escape(extractCategory(i.name))}</td>
         <td><span class="pill ${i.super}">${SUPER_LABEL[i.super] || i.super}</span></td>
         <td class="price">${fmtPrice(i.price)}${isOffer ? `<br><span class="price list">${fmtPrice(i.listPrice)}</span>` : ''}</td>
