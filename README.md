@@ -23,13 +23,13 @@ desde `public/`.
 4. El botón **"Actualizar precios"** dispara el workflow vía `/api/refresh`
    (Vercel Function) y muestra fecha/hora de la última vez que se usó.
 5. El botón **"Escanear competencia"** cambia el contexto de la web a las
-   marcas competidoras: Blue Patna, Arroz Green Chef, Arroz Aruba, Kikkoman y
+   marcas competidoras: Blue Patna, Arroz Green Chef, Arroz Aruba, Sakura y
    Mirokumai.
 
 ## Marcas relevadas
 
 - **Propias (Saman):** Saman, La Abundancia, Kyoto
-- **Competencia:** Blue Patna, Arroz Green Chef, Arroz Aruba, Kikkoman, Mirokumai
+- **Competencia:** Blue Patna, Arroz Green Chef, Arroz Aruba, Sakura, Mirokumai
 
 ## Desarrollo local
 

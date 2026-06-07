@@ -11,7 +11,7 @@ const COMPETITOR_BRAND_DEFINITIONS = [
   { name: 'blue patna', aliases: ['blue patna'] },
   { name: 'arroz green chef', aliases: ['green chef', 'arroz green chef'] },
   { name: 'arroz aruba', aliases: ['aruba'] },
-  { name: 'kikkoman', aliases: ['kikkoman'] },
+  { name: 'sakura', aliases: ['sakura'] },
   { name: 'mirokumai', aliases: ['mirokumai'] },
 ];
 
@@ -34,7 +34,7 @@ export const SEARCH_TERMS = [
   'blue patna',
   'green chef',
   'arroz aruba',
-  'kikkoman',
+  'sakura',
   'mirokumai',
 ];
 

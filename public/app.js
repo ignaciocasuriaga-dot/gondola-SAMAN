@@ -4,7 +4,7 @@ const SUPER_LABEL = { tata: 'Tata', disco: 'Disco', eldorado: 'El Dorado', tiend
 const SUPERS = ['tata', 'disco', 'eldorado', 'tiendainglesa'];
 const GROUP_LABEL = { saman: 'Saman', competencia: 'Competencia' };
 const OWN_BRANDS = ['saman', 'la abundancia', 'kyoto'];
-const COMPETITOR_BRANDS = ['blue patna', 'arroz green chef', 'arroz aruba', 'kikkoman', 'mirokumai'];
+const COMPETITOR_BRANDS = ['blue patna', 'arroz green chef', 'arroz aruba', 'sakura', 'mirokumai'];
 const ALL_BRANDS = [...OWN_BRANDS, ...COMPETITOR_BRANDS];
 const PRICE_LIST_KEY = 'gondola-saman-pvp-v1';
 const GAP_LABEL = { above: 'Sobre PVP', ok: 'En linea', below: 'Bajo PVP' };
@@ -78,7 +78,7 @@ function extractSize(name) {
 
 function normalizeName(name) {
   let n = stripAccents(name.toLowerCase());
-  n = n.replace(/\b(saman|la abundancia|abundancia|kyoto|blue patna|green chef|arroz aruba|aruba|kikkoman|mirokumai)\b/g, ' ');
+  n = n.replace(/\b(saman|la abundancia|abundancia|kyoto|blue patna|green chef|arroz aruba|aruba|sakura|mirokumai)\b/g, ' ');
   n = n.replace(/\d+(?:[.,]\d+)?\s*(kg|kilos?|gr?|gramos|ml|cc|lts?|litros?|un|u|unid(?:ades?)?|x\s*\d+)\b/g, ' ');
   n = n.replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
   const stop = new Set(['de', 'la', 'el', 'con', 'sin', 'y', 'a', 'en', 'para', 'gr', 'g']);
@@ -1359,7 +1359,7 @@ function initEvents() {
     switchTab('catalog');
     renderAll();
     toast(state.competitorMode
-      ? 'Modo competencia: Blue Patna · Arroz Green Chef · Arroz Aruba · Kikkoman · Mirokumai'
+      ? 'Modo competencia: Blue Patna · Arroz Green Chef · Arroz Aruba · Sakura · Mirokumai'
       : 'Volviste a las marcas Saman, La Abundancia y Kyoto');
   });
   $('#catalogQ').addEventListener('input', (e) => { state.catalog.q = e.target.value; renderCatalog(); });

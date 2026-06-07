@@ -14,7 +14,7 @@ const FALLBACK_TERMS = {
   'blue patna': ['patna'],
   'arroz green chef': ['green chef'],
   'arroz aruba': ['aruba'],
-  kikkoman: ['kikkoman'],
+  sakura: ['sakura'],
   mirokumai: ['mirokumai'],
 };
 
